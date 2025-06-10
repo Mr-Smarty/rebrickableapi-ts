@@ -54,10 +54,6 @@ type WithParameters<Url extends string, Parameters extends string | undefined = 
 type PaginatedParameters = `page=${number}` | `page_size=${number}` | CombineParameters<`page=${number}`, `page_size=${number}`>;
 type PaginatedEndpointUrl<Endpoint extends KnownEndpoint> = Endpoint | WithParameters<Endpoint, PaginatedParameters>;
 
-// helper for search parameters
-type SearchParameters = `search=${string}`;
-type SearchEndpointUrl<Endpoint extends KnownEndpoint> = Endpoint | WithParameters<Endpoint, SearchParameters>;
-
 type PaginatedResponseType<Endpoint extends KnownEndpoint, T> =
   Endpoint extends PaginatedEndpointUrl<KnownEndpoint> ? { count: number, next: string | null, previous: string | null, results: T[] } :
   unknown;
